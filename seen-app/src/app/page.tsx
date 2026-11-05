@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/consumer/site-chrome";
 import { MerchantCard } from "@/components/consumer/merchant-card";
+import { Logo } from "@/components/brand/logo";
 import { Badge } from "@/components/ui/badge";
 import { compact, cedis, pct } from "@/lib/format";
 import {
@@ -28,6 +29,61 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function LandingPage() {
+  if (process.env.NODE_ENV === "production") {
+    return (
+      <main className="min-h-screen bg-[#FBFAF7]">
+        <header className="border-b border-ink-100 bg-white">
+          <div className="container flex h-16 items-center justify-between gap-4">
+            <Logo />
+            <nav className="flex items-center gap-2">
+              <Link href="/signin" className="rounded-xl px-3 py-2 text-sm font-medium text-ink-700 hover:bg-ink-50">
+                Sign in
+              </Link>
+              <Link href="/signup" className="rounded-xl bg-sun-500 px-3.5 py-2 text-sm font-semibold text-white hover:bg-sun-600">
+                Create account
+              </Link>
+            </nav>
+          </div>
+        </header>
+        <section className="container grid min-h-[calc(100vh-4rem)] max-w-5xl content-center gap-8 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-400">Seen · live service</p>
+            <h1 className="mt-3 max-w-2xl text-4xl font-semibold leading-tight text-ink-900">
+              Real neighbourhood listings are being connected.
+            </h1>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
+              We’ve hidden the sample businesses rather than present them as real. The live business directory is not connected on this deployment yet.
+            </p>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-500">
+              You can create an account or sign in while the live directory is being prepared. Please don’t submit real business or payment information through preview flows.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/signup" className="inline-flex h-11 items-center rounded-xl bg-sun-500 px-4 text-sm font-semibold text-white hover:bg-sun-600">
+                Create account
+              </Link>
+              <Link href="/signin" className="inline-flex h-11 items-center rounded-xl border border-ink-200 bg-white px-4 text-sm font-semibold text-ink-800 hover:bg-ink-50">
+                Sign in
+              </Link>
+            </div>
+          </div>
+          <aside className="border-l-2 border-sun-500 pl-5">
+            <h2 className="text-sm font-semibold text-ink-900">Service status</h2>
+            <dl className="mt-4 space-y-3 text-sm">
+              <div className="flex justify-between gap-4">
+                <dt className="text-ink-500">Business directory</dt>
+                <dd className="font-medium text-ink-800">Not connected</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-ink-500">Sample listings</dt>
+                <dd className="font-medium text-ink-800">Hidden</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+      </main>
+    );
+  }
+
   const merchants = verifiedMerchants();
   const categories = listCategories();
   const corridors = liveCorridors();
