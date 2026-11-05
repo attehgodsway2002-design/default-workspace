@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0b2e4a;
+  --sun: #c16a1e;
+  --paper: #fbfaf7;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: #12222f;
+  font-feature-settings: "cv11", "ss01";
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #f2cda4;
+  color: #0b2e4a;
+}
+
+/* thin, tasteful scrollbars for the dashboard rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hairline {
+  border-color: rgba(11, 46, 74, 0.08);
+}
+
+/* Kente-inspired strip used as a brand device under section headers */
+.kente-strip {
+  background: repeating-linear-gradient(
+    90deg,
+    #0b2e4a 0 18px,
+    #e0a526 18px 26px,
+    #0b2e4a 26px 34px,
+    #a8442a 34px 40px,
+    #0b2e4a 40px 56px,
+    #1e6b4f 56px 62px
+  );
+}
+
+.paper-grain {
+  background-image: radial-gradient(rgba(11, 46, 74, 0.045) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.metric {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #c16a1e;
+  outline-offset: 2px;
+}
+
+/* the map's canvas fallback: a hand-tuned corridor base */
+.map-grid {
+  background-image: linear-gradient(rgba(11, 46, 74, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 46, 74, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
